@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
 
     [Header("Damage Effects")]
     public float damageEffectDecay;
+    public AudioClip deathSound;
     float damageEffectValue;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -47,8 +48,14 @@ public class EnemyController : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    internal void Die()
+    {
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
+        Destroy(gameObject);
     }
 }
 
